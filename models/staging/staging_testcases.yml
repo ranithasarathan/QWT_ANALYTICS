@@ -1,0 +1,42 @@
+version: 2
+
+models: 
+  - name: stg_customers
+    description: "{{doc('stg_cust_tab')}}"
+    columns:
+      - name: customerid
+        description: "{{doc('stg_cust_col')}}"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_products
+    columns:
+      - name: productid
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_employees
+    columns:
+      - name: empid
+        tests:
+          - is_even
+          - unique
+          - not_null
+
+  - name: stg_shipments
+    columns:
+      - name: status
+        tests:
+          - accepted_values:
+              values: ['shipped','returned','ordered','replaced']
+
+  - name: stg_orderdetails
+    columns:
+      - name: orderid
+        tests:
+          - relationships:
+              to: ref('stg_orders')
+              field: orderid
+              

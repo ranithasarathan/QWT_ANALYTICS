@@ -1,0 +1,16 @@
+version: 2
+
+exposures:
+  - name: rpt_sales_by_customerid
+    type: dashboard
+    maturity: high
+    url: https://www.google.com
+    description: "sales by cust"
+    
+    owner:
+      name: david
+      email: davidg@gmail.com
+      
+    depends_on:
+      - ref('fct_orders')
+      - ref('dim_employees')
